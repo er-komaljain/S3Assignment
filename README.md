@@ -5,6 +5,7 @@ Assumptions:
 1) No logging
 2) AWS secret key and access ID are present as plain string in config without any encryption or security
 3) No health check added for service
+4) Gradle is installed on your machine (Preferable 3.x)
 
 To start the application:
 `gradle run`
