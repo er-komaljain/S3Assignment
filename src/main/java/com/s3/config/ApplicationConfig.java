@@ -9,7 +9,7 @@ import javax.validation.Valid;
 public class ApplicationConfig extends Configuration {
 
     @Valid
-    private S3Config s3Config;
+    private final S3Config s3Config;
 
     @JsonCreator
     public ApplicationConfig(@JsonProperty("s3Config") S3Config s3Config) {

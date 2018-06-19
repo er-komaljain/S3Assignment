@@ -1,7 +1,6 @@
 package com.s3.resource;
 
 import com.s3.service.S3Service;
-
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import java.io.InputStream;
 @Path("/s3")
 public class S3Resource {
 
-    private S3Service s3Service;
+    private final S3Service s3Service;
 
     @Inject
     public S3Resource(S3Service s3Service) {

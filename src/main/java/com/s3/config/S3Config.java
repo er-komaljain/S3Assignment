@@ -6,13 +6,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class S3Config {
     @NotEmpty
-    private String bucketName;
+    private final String bucketName;
 
     @NotEmpty
-    private String accessKeyId;
+    private final String accessKeyId;
 
     @NotEmpty
-    private String accessSecretKey;
+    private final String accessSecretKey;
 
     @JsonCreator
     public S3Config(@JsonProperty("bucketName") String bucketName,
