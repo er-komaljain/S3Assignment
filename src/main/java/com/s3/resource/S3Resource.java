@@ -1,6 +1,7 @@
 package com.s3.resource;
 
 import com.s3.service.S3Service;
+
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.inject.Inject;
@@ -35,7 +36,7 @@ public class S3Resource {
     @GET
     @Path("{token}")
     public Response downloadFile(@NotNull@PathParam("token") String token) {
-        String redirectUrl = s3Service.downloadFile(token);
+        String redirectUrl = s3Service.getFileUrl(token);
         return Response.ok(redirectUrl)
                 .build();
     }

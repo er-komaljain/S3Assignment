@@ -6,9 +6,11 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+
+import com.s3.service.S3Service;
 import com.s3.config.ApplicationConfig;
 import com.s3.resource.S3Resource;
-import com.s3.service.S3Service;
+
 import io.dropwizard.Application;
 import io.dropwizard.forms.MultiPartBundle;
 import io.dropwizard.jersey.setup.JerseyEnvironment;

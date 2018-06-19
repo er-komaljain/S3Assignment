@@ -16,6 +16,7 @@ import static io.dropwizard.testing.ResourceHelpers.resourceFilePath
 
 class S3ResourceSpec extends Specification {
 
+    @Shared
     S3Service s3Service = Mock(S3Service)
 
     @Shared
@@ -25,13 +26,23 @@ class S3ResourceSpec extends Specification {
             .addResource(new S3Resource(s3Service))
             .build()
 
+    @Shared
+    def token = "UniqueToken"
+
+    @Shared
+    def url = "http://s3url/token"
+
+    def setupSpec() {
+        1 * s3Service.upload(_) >> { token }
+        1 * s3Service.getFileUrl(token) >> { url }
+    }
+
     def "POST /upload should upload a file to S3"() {
         given:
         def file = new File(resourceFilePath("testFile.txt"))
         FormDataMultiPart multipartFileRequest = new FormDataMultiPart()
-        multipartFileRequest.field("filename", file.getName());
+        multipartFileRequest.field("filename", file.getName())
         multipartFileRequest.bodyPart(new FileDataBodyPart("file", file, new MediaType("txt", "jpeg")))
-
 
         when:
         def response = resources.client()
@@ -42,6 +53,20 @@ class S3ResourceSpec extends Specification {
 
         then:
         response.status == 200
-        1 * s3Service.upload(_ as InputStream)
+        def token = response.readEntity(String)
+        token == "UniqueToken"
+    }
+
+    def "GET /{token} should get URL of the file from S3"() {
+        when:
+        def response = resources.client()
+                                .target("/s3/$token")
+                                .request()
+                                .get()
+
+        then:
+        response.status == 200
+        def actualUrl = response.readEntity(String)
+        actualUrl == url
     }
 }
