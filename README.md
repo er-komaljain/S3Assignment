@@ -1,5 +1,5 @@
 # S3Assignment
-Simple REST service to upload a file to S3 and get a Presigned URL valid for one minute to access file with generated token
+Simple REST service to upload a file to S3 and get a Pre signed URL valid for one minute to access file with generated token
 
 Assumptions:
 1) No logging
@@ -14,9 +14,9 @@ To run tests:
 
 To upload a file :
 *POST http://localhost:8080/s3/upload
-        ** Pass the file as form-data with key `file`
-        ** Returns unique token as string
+    * Pass the file as form-data with key `file`
+    * Returns unique token as string
 
 *GET http://localhost:8080/s3/{uniqueToken}
-    ** Returns Presigned URL as string with a validity of one minute
+    * Returns Pre signed URL as string with a validity of one minute
 
