@@ -13,10 +13,10 @@ To run tests:
 `gradle test`
 
 To upload a file :
-POST http://localhost:8080/s3/upload
-        - Pass the file as form-data with key `file`
-        - Returns unique token as string
+*POST http://localhost:8080/s3/upload
+        ** Pass the file as form-data with key `file`
+        ** Returns unique token as string
 
-GET http://localhost:8080/s3/{uniqueToken}
-    - Returns Presigned URL as string with a validity of one minute
+*GET http://localhost:8080/s3/{uniqueToken}
+    ** Returns Presigned URL as string with a validity of one minute
 
